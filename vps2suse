@@ -106,8 +106,8 @@ configure_chroot() {
 }
 
 install_packages() {
-	patterns="enhanced_base bootloader yast2_basis yast2_server enlightenment "
-	packages="zypper kernel-default dracut wicked command-not-found lvm2 man iptables iputils openssh-server"
+	patterns="enhanced_base  bootloader yast2_basis cockpit yast2_server server-file_server enlightenment network-network_admin lxqt-lxqt budgie-desktop base-x11 cockpit"
+	packages="zypper kernel-default dracut wicked xorg-x11-Xvnc command-not-found lvm2 man sudo yast2-control-center-qt iptables iputils openssh-server budgie-budgie cockpit"
 	chroot_exec "zypper -i --root=/mnt in -y -t pattern $patterns"
 	
 	# avoid https failures
