@@ -33,7 +33,7 @@ download_and_extract_bootstrap() {
 	Tumbleweed)
 		case $architecture in
 		x86_64)
-			baseurl="tumbleweed/appliances/opensuse-tumbleweed-image.x86_64-lxc.tar.xz"
+			baseurl="tumbleweed/appliances/opensuse-tumbleweed-image.x86_64-networkd.tar.xz"
 			;;
 		aarch64|armv6l|armv7l)
 			baseurl="ports/aarch64/tumbleweed/appliances/opensuse-tumbleweed-image.$architecture-lxc.tar.xz"
@@ -106,7 +106,7 @@ configure_chroot() {
 }
 
 install_packages() {
-	patterns="enhanced_base bootloader yast2_basis yast2_server"
+	patterns="enhanced_base bootloader yast2_basis yast2_server enlightenment"
 	packages="zypper kernel-default dracut wicked command-not-found lvm2 man iptables iputils openssh-server"
 	chroot_exec "zypper -i --root=/mnt in -y -t pattern $patterns"
 	
