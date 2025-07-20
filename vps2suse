@@ -106,8 +106,8 @@ configure_chroot() {
 }
 
 install_packages() {
-	patterns="enhanced_base  bootloader yast2_basis cockpit yast2_server server-file_server enlightenment network-network_admin lxqt-lxqt budgie-desktop base-x11 cockpit"
-	packages="zypper kernel-default dracut wicked xorg-x11-Xvnc command-not-found lvm2 man sudo yast2-control-center-qt iptables iputils openssh-server budgie-budgie cockpit"
+	patterns="enhanced_base  bootloader yast2_basis cockpit yast2_server server-file_server enlightenment server-gateway_server server-lamp_server server-dhcp_dns_server server-kvm_server enlightenment-enlightenment network-network_admin xfce-xfce lxqt-lxqt budgie-budgie yast-x11_yast base-x11 cockpit"
+	packages="zypper kernel-default dracut wicked xorg-x11-Xvnc openbox command-not-found lvm2 remmina dconf-editor libvirtdaemon-qemu man cockpit-podman udo yast2-control-center-qt iptables iputils openssh-server budgie-desktop liblxqt lxqt-session lxqt-desktop cockpit"
 	chroot_exec "zypper -i --root=/mnt in -y -t pattern $patterns"
 	
 	# avoid https failures
