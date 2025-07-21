@@ -1,0 +1,31 @@
+#!/bin/bash
+# Unified provisioning script
+
+# Determine environment
+if [[ -e /proc/xen ]]; then
+  ENV="xen"
+elif systemd-detect-virt -q; then
+  ENV=$(systemd-detect-virt)
+else
+  ENV="baremetal"
+fi
+
+# Load appropriate configuration
+case $ENV in
+  "kvm"|"qemu")
+    source provision/virtual.sh
+    ;;
+  "oracle"|"virtualbox")
+    source provision/virtualbox.sh
+    ;;
+  "baremetal")
+    source provision/baremetal.sh
+    ;;
+  *)
+    echo "Unknown environment: $ENV"
+    exit 1
+    ;;
+esac
+
+# Common provisioning
+source provision/common.sh
