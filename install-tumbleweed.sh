@@ -157,6 +157,16 @@ zypper --non-interactive --root /mnt install --no-recommends \
     $REMOTE_DESKTOP_PACKAGES \
     xrdp \
     xorg-x11-Xvnc
+    
+# Check if this is a virtual machine
+if [[ $(systemd-detect-virt) != "none" ]]; then
+  echo "Running in a virtualized environment, skipping NVIDIA driver installation"
+else
+  echo "Installing NVIDIA drivers..."
+  zypper addrepo https://download.nvidia.com/opensuse/tumbleweed NVIDIA
+  zypper refresh
+  zypper install nvidia-driver-G06 nvidia-driver-G06-kmp-default
+fi
 
 # Configure GRUB
 echo "Configuring GRUB..."
