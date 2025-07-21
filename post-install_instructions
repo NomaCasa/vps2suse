@@ -1,0 +1,22 @@
+## Usage Instructions
+
+1. Save this script as `install-tumbleweed-enhanced.sh`
+2. Make it executable: `chmod +x install-tumbleweed-enhanced.sh`
+3. Run it as root: `sudo ./install-tumbleweed-enhanced.sh`
+4. After reboot, execute the post-installation commands shown at the end of the script
+
+## Important Notes
+
+1. **Cloudflare DNS**:
+   - You must have your domain properly configured in Cloudflare
+   - The script uses DNS-01 challenges which require API access
+   - Consider creating a dedicated API token with limited permissions
+
+2. **Certificate Setup**:
+   - The first certificate must be obtained manually as shown in the post-install instructions
+   - Renewal will happen automatically via systemd timer
+
+3. **Security**:
+   - VNC password must be set manually after first login with `vncpasswd`
+   - Consider changing the default port for RDP/VNC if exposed to the internet
+   - Regularly update your system with `zypper dup`
