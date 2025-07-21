@@ -1,0 +1,8 @@
+/provisioning
+  /provision
+    common.sh       # Shared configuration
+    baremetal.sh    # Bare metal specific
+    virtualbox.sh   # VirtualBox specific
+    virtual.sh      # KVM/QEMU generic
+  .secrets          # Credentials
+  provision-system.sh # Main entry point
