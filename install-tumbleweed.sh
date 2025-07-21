@@ -1,12 +1,28 @@
 #!/bin/bash
 # vps2suse-tumbleweed - Modified for Chris Garb's VPS requirements - DS
 
+# Load secrets securely
+SECRETS_FILE="$(dirname "$0")/.secrets"
+if [ ! -f "$SECRETS_FILE" ]; then
+  echo "Error: .secrets file not found!" >&2
+  exit 1
+fi
+
+# Read secrets
+source "$SECRETS_FILE"
+
+# Now use variables like:
+# USERNAME="${credentials.username}"
+# PASSWORD="${credentials.password}"
+# etc.
+
+
 set -e
 
 # Configuration variables
-USERNAME="chrisgarb"
-PASSWORD="" # Set this or prompt during installation
-HOSTNAME="vps.chrisgarb.com"
+USERNAME="${credentials.username}"
+PASSWORD="${credentials.password}" # Set this or prompt during installation
+HOSTNAME="${credentials.hostname}"
 TIMEZONE="America/New_York"
 LOCALE="en_US.UTF-8"
 KEYBOARD="us"
