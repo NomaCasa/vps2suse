@@ -1,6 +1,21 @@
 #!/bin/bash
 # vps2suse-tumbleweed-enhanced - With NoVNC, Nginx, and Let's Encrypt
 
+# Load secrets securely
+SECRETS_FILE="$(dirname "$0")/.secrets"
+if [ ! -f "$SECRETS_FILE" ]; then
+  echo "Error: .secrets file not found!" >&2
+  exit 1
+fi
+
+# Read secrets
+source "$SECRETS_FILE"
+
+# Now use variables like:
+# USERNAME="${credentials.username}"
+# PASSWORD="${credentials.password}"
+# etc.
+
 set -e
 
 # Configuration variables
