@@ -33,3 +33,8 @@ wget https://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-NET-x86_64
 # Attach ISO and start installation
 qm set 1000 --cdrom local:iso/tumbleweed.iso
 qm start 1000
+
+### Inside the VM after installation
+#zypper addrepo https://download.nvidia.com/opensuse/tumbleweed NVIDIA
+#zypper refresh
+#zypper install nvidia-driver-G06 nvidia-driver-G06-kmp-default
