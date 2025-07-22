@@ -106,7 +106,7 @@ configure_chroot() {
 }
 
 install_packages() 
-	patterns="enhanced_base bootloader yast2_basis yast2_server kvm_server kvm_tools enlightenment xfce cockpit" 
+	patterns="enhanced_base bootloader yast2_basis yast2_server kvm_server kvm_tools enlightenment xfce cockpit"
 	packages="zypper xrdp tigervnc nginx python3-certbot-nginx yast2_basis yast2_server kvm_server kvm_tools enhanced_base enlightenment cockpit cockpit-podman cockpit-machines xfce-sessoion xfce-desktop" 
 	chroot_exec "zypper -i --root=/mnt in -y -t pattern $patterns"
 	
