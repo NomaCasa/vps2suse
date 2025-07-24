@@ -20,7 +20,7 @@ DESKTOP_ENVS="enlightenment budgie lxqt"
 REMOTE_DESKTOP_PACKAGES="tigervnc xorg-x11-server tightvnc"
 
 # Required patterns
-PATTERNS="yast2_basis yast2_server cockpit enlightenment budgie lxqt"
+PATTERNS="yast2_basis yast2_server cockpit enlightenment xfce"
 
 # Check if we're root
 if [ "$(id -u)" != "0" ]; then
@@ -118,7 +118,7 @@ swapon "$PARTITION_SWAP"
 
 # Install base system
 echo "Installing base system..."
-zypper --non-interactive --root /mnt install --no-recommends \
+zypper --non-interactive --root /mnt install \
     patterns-base-base \
     patterns-base-enhanced_base \
     patterns-base-minimal_base \
@@ -131,13 +131,13 @@ zypper --non-interactive --root /mnt install --no-recommends \
 # Install desktop environments
 echo "Installing desktop environments..."
 for env in $DESKTOP_ENVS; do
-    zypper --non-interactive --root /mnt install --no-recommends \
+    zypper --non-interactive --root /mnt install \
         patterns-x11-x11_${env}
 done
 
 # Install remote desktop packages
 echo "Installing remote desktop packages..."
-zypper --non-interactive --root /mnt install --no-recommends \
+zypper --non-interactive --root /mnt install \
     $REMOTE_DESKTOP_PACKAGES \
     xrdp \
     xorg-x11-Xvnc
