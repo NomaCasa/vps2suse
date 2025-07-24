@@ -19,7 +19,7 @@ BOOT_SIZE="512M"
 GRUB_TIMEOUT="15"
 
 # Desktop environments
-DESKTOP_ENVS="enlightenment budgie lxqt"
+DESKTOP_ENVS="enlightenment xfce"
 REMOTE_DESKTOP_PACKAGES="tigervnc xorg-x11-server tightvnc websockify novnc"
 
 # Required patterns
