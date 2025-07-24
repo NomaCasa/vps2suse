@@ -23,7 +23,7 @@ DESKTOP_ENVS="enlightenment budgie lxqt"
 REMOTE_DESKTOP_PACKAGES="tigervnc xorg-x11-server tightvnc websockify novnc"
 
 # Required patterns
-PATTERNS="yast2_basis yast2_server cockpit enlightenment budgie lxqt"
+PATTERNS="yast2_basis yast2_server cockpit enlightenment  xfce"
 
 # Web stack packages
 WEB_PACKAGES="nginx python3-certbot-dns-cloudflare"
