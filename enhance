@@ -60,9 +60,9 @@ echo "Starting upgrade from Leap 15.6 to Tumbleweed..."
 zypper --non-interactive ar -f -c https://download.opensuse.org/tumbleweed/repo/oss/ oss
 zypper --non-interactive ar -f -c https://download.opensuse.org/tumbleweed/repo/non-oss/ non-oss
 zypper --non-interactive ar -f -c https://download.opensuse.org/update/tumbleweed/ update
-zypper --non-interactive ar -f -d -c https://download.opensuse.org/distribution/leap/15.6/repo/oss/ leap-oss
-zypper --non-interactive ar -f -d -c https://download.opensuse.org/distribution/leap/15.6/repo/non-oss/ leap-non-oss
-zypper --non-interactive ar -f -d -c https://download.opensuse.org/update/leap/15.6/oss/ leap-update
+#zypper --non-interactive ar -f -d -c https://download.opensuse.org/distribution/leap/15.6/repo/oss/ leap-oss
+#zypper --non-interactive ar -f -d -c https://download.opensuse.org/distribution/leap/15.6/repo/non-oss/ leap-non-oss
+#zypper --non-interactive ar -f -d -c https://download.opensuse.org/update/leap/15.6/oss/ leap-update
 
 # Refresh repos and dist-upgrade
 zypper --non-interactive --gpg-auto-import-keys ref
@@ -81,48 +81,48 @@ localectl set-locale LANG=$LOCALE
 localectl set-keymap $KEYBOARD
 
 # Partitioning setup (same as before)
-echo "Setting up disk partitions..."
-DEVICE=$(lsblk -d -p -n -l -o NAME -e 7,11)
-PARTITION_BOOT="${DEVICE}1"
-PARTITION_ROOT="${DEVICE}2"
-PARTITION_XFS="${DEVICE}3"
-PARTITION_SWAP="${DEVICE}4"
+#echo "Setting up disk partitions..."
+#DEVICE=$(lsblk -d -p -n -l -o NAME -e 7,11)
+#PARTITION_BOOT="${DEVICE}1"
+#PARTITION_ROOT="${DEVICE}2"
+#PARTITION_XFS="${DEVICE}3"
+#PARTITION_SWAP="${DEVICE}4"
 
-wipefs -a "$DEVICE"
-parted -s "$DEVICE" mklabel gpt
-parted -s "$DEVICE" mkpart primary fat32 1MiB $BOOT_SIZE
-parted -s "$DEVICE" set 1 esp on
-parted -s "$DEVICE" mkpart primary btrfs $BOOT_SIZE -$((XFS_SIZE + SWAP_SIZE))
-parted -s "$DEVICE" mkpart primary xfs -$((XFS_SIZE + SWAP_SIZE)) -$SWAP_SIZE
-parted -s "$DEVICE" mkpart primary linux-swap -$SWAP_SIZE 100%
+#wipefs -a "$DEVICE"
+#parted -s "$DEVICE" mklabel gpt
+#parted -s "$DEVICE" mkpart primary fat32 1MiB $BOOT_SIZE
+#parted -s "$DEVICE" set 1 esp on
+#parted -s "$DEVICE" mkpart primary btrfs $BOOT_SIZE -$((XFS_SIZE + SWAP_SIZE))
+#parted -s "$DEVICE" mkpart primary xfs -$((XFS_SIZE + SWAP_SIZE)) -$SWAP_SIZE
+#parted -s "$DEVICE" mkpart primary linux-swap -$SWAP_SIZE 100%
 
-mkfs.fat -F32 "$PARTITION_BOOT"
-mkfs.btrfs -f "$PARTITION_ROOT"
-mkfs.xfs -f "$PARTITION_XFS"
-mkswap "$PARTITION_SWAP"
+#mkfs.fat -F32 "$PARTITION_BOOT"
+#mkfs.btrfs -f "$PARTITION_ROOT"
+#mkfs.xfs -f "$PARTITION_XFS"
+#mkswap "$PARTITION_SWAP"
 
-pvcreate "$PARTITION_ROOT"
-vgcreate vg_root "$PARTITION_ROOT"
-lvcreate -L 20G -n lv_root vg_root
-lvcreate -L 20G -n lv_home vg_root
-lvcreate -L 20G -n lv_var vg_root
-lvcreate -L 20G -n lv_log vg_root
-lvcreate -L 20G -n lv_opt vg_root
+#pvcreate "$PARTITION_ROOT"
+#vgcreate vg_root "$PARTITION_ROOT"
+#lvcreate -L 20G -n lv_root vg_root
+#lvcreate -L 20G -n lv_home vg_root
+#lvcreate -L 20G -n lv_var vg_root
+#lvcreate -L 20G -n lv_log vg_root
+#lvcreate -L 20G -n lv_opt vg_root
 
-mkfs.btrfs /dev/vg_root/lv_root
-mkfs.btrfs /dev/vg_root/lv_home
-mkfs.btrfs /dev/vg_root/lv_var
-mkfs.btrfs /dev/vg_root/lv_log
-mkfs.btrfs /dev/vg_root/lv_opt
+#mkfs.btrfs /dev/vg_root/lv_root
+#mkfs.btrfs /dev/vg_root/lv_home
+#mkfs.btrfs /dev/vg_root/lv_var
+#mkfs.btrfs /dev/vg_root/lv_log
+#mkfs.btrfs /dev/vg_root/lv_opt
 
-mount /dev/vg_root/lv_root /mnt
-mkdir -p /mnt/{boot,home,var,opt,xfs}
-mount "$PARTITION_BOOT" /mnt/boot
-mount /dev/vg_root/lv_home /mnt/home
-mount /dev/vg_root/lv_var /mnt/var
-mount /dev/vg_root/lv_opt /mnt/opt
-mount "$PARTITION_XFS" /mnt/xfs
-swapon "$PARTITION_SWAP"
+#mount /dev/vg_root/lv_root /mnt
+#mkdir -p /mnt/{boot,home,var,opt,xfs}
+#mount "$PARTITION_BOOT" /mnt/boot
+#mount /dev/vg_root/lv_home /mnt/home
+#mount /dev/vg_root/lv_var /mnt/var
+#mount /dev/vg_root/lv_opt /mnt/opt
+#mount "$PARTITION_XFS" /mnt/xfs
+#swapon "$PARTITION_SWAP"
 
 # Install base system with additional web packages
 echo "Installing base system..."
