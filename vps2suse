@@ -54,7 +54,7 @@ download_and_extract_bootstrap() {
 	sha256sum -c sha256sums.txt || exit 1
 
 	mkdir openSUSE
-	mount -o loop "$filename" -C /openSUSE
+	mount -o loop "$filename" /openSUSE
 	rm -f "$filename"
 
 	if grep -E "^nameserver\s+127\." /etc/resolv.conf > /dev/null; then
