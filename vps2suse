@@ -33,7 +33,7 @@ download_and_extract_bootstrap() {
 	Tumbleweed)
 		case $architecture in
 		x86_64)
-			baseurl="tumbleweed/appliances/opensuse-tumbleweed-image.x86_64-networkd.tar.xz"
+			baseurl="tumbleweed/iso/openSUSE-Tumbleweed-XFCE-Live-x86_64-Current.iso"
 			;;
 		aarch64|armv6l|armv7l)
 			baseurl="ports/aarch64/tumbleweed/appliances/opensuse-tumbleweed-image.$architecture-lxc.tar.xz"
@@ -106,8 +106,8 @@ configure_chroot() {
 }
 
 install_packages() {
-	patterns="enhanced_base  bootloader yast2_basis cockpit yast2_server server-file_server enlightenment server-gateway_server server-lamp_server server-dhcp_dns_server server-kvm_server enlightenment-enlightenment network-network_admin xfce-xfce lxqt-lxqt budgie-budgie budgie-dekstop yast-x11_yast base-x11 cockpit"
-	packages="zypper kernel-default dracut wicked xorg-x11-Xvnc openbox command-not-found lvm2 remmina pacmanfm-qt dconf-editor lxqt-qtplugin lxqt common libvirtdaemon-qemu man cockpit-podman udo yast2-control-center-qt iptables iputils openssh-server budgie-desktop lxqt lxqt-session lxqt-desktop nginx certbot cockpit"
+	patterns="enhanced_base  bootloader yast2_basis cockpit yast2_server enlightenment-enlightenment"
+	packages="zypper kernel-default dracut wicked xorg-x11-Xvnc openbox command-not-found lvm2 remmina pacmanfm-qt dconf-editor cockpit-podman sudo iptables iputils openssh-server nginx certbot"
 	chroot_exec "zypper -i --root=/mnt in -y -t pattern $patterns"
 	
 	# avoid https failures
