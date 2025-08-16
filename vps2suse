@@ -106,7 +106,7 @@ configure_chroot() {
 }
 
 install_packages() {
-	patterns="enhanced_base bootloader yast2_basis yast2_server"
+	patterns="enhanced_base bootloader yast2_basis yast2_server enlightenment-enlightenment xfce-desktop"
 	packages="zypper kernel-default dracut wicked command-not-found lvm2 man iptables iputils openssh-server"
 	chroot_exec "zypper -i --root=/mnt in -y -t pattern $patterns"
 	
