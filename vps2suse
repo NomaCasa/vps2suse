@@ -106,8 +106,8 @@ configure_chroot() {
 }
 
 install_packages() {
-	patterns="base-basesystem base enhanced_base basic_desktop devel_web bootloader yast2_basis yast2_server base-software_management server-dhcp_dns_server network-network_admin yast2_containers-container_runtime enlightenment-enlightenment cockpit file_server fonts gateway_server non_oss openSUSEway x11 x11_yast"
-	packages="zypper kernel-kvm-small dracut wicked command-not-found lvm2 man iptables iputils openssh-server yast-add-on yast-opensuse-mirror yast-online-update yast-rdp yast-tune yast-auth-client yast-packager autoyast2 yast-inst-server osc cockpit-podman"
+	patterns="base-basesystem base enhanced_base devel_web bootloader yast2_basis yast2_server base-software_management server-dhcp_dns_server network-network_admin yast2_containers-container_runtime enlightenment-enlightenment cockpit file_server fonts gateway_server non_oss openSUSEway xfce4-basis xfce4-extra xfce4 x11 x11_yast"
+	packages="zypper kernel-kvmsmall dracut wicked command-not-found lvm2 man iptables iputils openssh-server yast-add-on yast-opensuse-mirror yast-online-update yast-rdp yast-tune yast-auth-client yast-packager autoyast2 yast-inst-server osc cockpit-podman remmina spice-vda-agent"
 	chroot_exec "zypper -i --root=/mnt in -y -t pattern $patterns"
 	
 	# avoid https failures
