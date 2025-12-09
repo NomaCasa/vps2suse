@@ -33,7 +33,7 @@ download_and_extract_bootstrap() {
 	Tumbleweed)
 		case $architecture in
 		x86_64)
-			baseurl="tumbleweed/appliances/openSUSE-MicroOS.x86_64-SelfInstall.raw.xz
+			baseurl="tumbleweed/iso/openSUSE-tumbleweed-image.x86_64-lxc.tar.xz"
 			;;
 		aarch64|armv6l|armv7l)
 			baseurl="ports/aarch64/tumbleweed/appliances/opensuse-tumbleweed-image.$architecture-lxc.tar.xz"
@@ -106,8 +106,8 @@ configure_chroot() {
 }
 
 install_packages() {
-	patterns="microos-base-zypper microos-basesystem microos-base enhanced_base microos-bootloader microos-desktop-kde yast2_basis yast2_server base-software_management server-dhcp_dns_server network-network_admin microos-container_container_runtime microos-kvm_host enlightenment-enlightenment microos-cockpit file_server fonts gateway_server non_oss openSUSEway"
-	packages="zypper kernel-kvmsmall kernel-kvmsmall-devel dracut wicked command-not-found lvm2 man rustdesk-server iptables iputils openssh-server nano podman-desktop yast-add-on yast-opensuse-mirror yast-online-update yast-rdp yast-tune yast-packager autoyast2 cockpit-podman remmina spice-vda-agent"
+	patterns="microos-base-zypper microos-basesystem microos-base enhanced_base microos-bootloader base-bootloader microos-desktop-kde yast-yast2_basis yast-yast2_server server-dhcp_dns_server network-network_admin microos-container_container_runtime microos-cockpit server-file_server fonts server-gateway_server non_oss"
+	packages="zypper kernel-kvmsmall kernel-kvmsmall-devel kernel-macros update-bootloader lsof dracut gfxboot kernel-default wicked command-not-found lvm2 man rustdesk-server iptables iputils openssh-server nano podman-desktop yast2 yast2-update yast2-online-update openSUSE-appstream-process yast2-alternatives yast2-yast-add-on yast2-online-update yast2-rdp yast2-tune yast2-packager autoyast2 cockpit-podman spice-vda-agent"
 	chroot_exec "zypper -i --root=/mnt in -y -t pattern $patterns"
 	
 	# avoid https failures
