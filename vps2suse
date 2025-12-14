@@ -33,7 +33,7 @@ download_and_extract_bootstrap() {
 	Tumbleweed)
 		case $architecture in
 		x86_64)
-			baseurl="tumbleweed/iso/openSUSE-tumbleweed-image.x86_64-lxc.tar.xz"
+			baseurl="tumbleweed/appliances/openSUSE-tumbleweed-image.x86_64-lxc.tar.xz"
 			;;
 		aarch64|armv6l|armv7l)
 			baseurl="ports/aarch64/tumbleweed/appliances/opensuse-tumbleweed-image.$architecture-lxc.tar.xz"
