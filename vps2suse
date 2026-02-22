@@ -58,7 +58,7 @@ download_and_extract_bootstrap() {
 	rm -f "$filename"
 
 	if grep -E "^nameserver\s+127\." /etc/resolv.conf > /dev/null; then
-		echo "nameserver 8.8.8.8" > /openSUSE/etc/resolv.conf
+		echo "nameserver 1.1.1.1" > /openSUSE/etc/resolv.conf
 	else
 		cp -Lp /etc/resolv.conf /openSUSE/etc
 	fi
@@ -106,8 +106,8 @@ configure_chroot() {
 }
 
 install_packages() {
-	patterns="enhanced_base bootloader yast2_basis yast2_server"
-	packages="zypper kernel-default dracut wicked command-not-found lvm2 man iptables iputils openssh-server"
+	patterns="enhanced_base bootloader yast2_basis yast2_server xfce containers-container_runtime cockpit kvm_host enlightenment"
+	packages="zypper kernel-default dracut wicked command-not-found lvm2 man iptables iputils openssh-server open-iscsi targetcli-fb openvswitch-switch cockpit-machines cockpit-podman"
 	chroot_exec "zypper -i --root=/mnt in -y -t pattern $patterns"
 	
 	# avoid https failures
